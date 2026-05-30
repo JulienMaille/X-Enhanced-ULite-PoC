@@ -304,7 +304,7 @@ if __name__ == '__main__':
     val_loader = DataLoader(SurfaceDefectDatasetV2("val.npz", 'val'), batch_size=32, shuffle=False, num_workers=0, pin_memory=True)
 
     model = XULite(1, 1).to(device)
-    optimizer = optim.AdamW(model.parameters(), lr=1e-3)
+    optimizer = optim.AdamW(model.parameters(), lr=1e-3, weight_decay=1e-4)
     criterion = nn.BCEWithLogitsLoss()
     scheduler = optim.lr_scheduler.ReduceLROnPlateau(optimizer, 'min', patience=5, factor=0.5)
 
